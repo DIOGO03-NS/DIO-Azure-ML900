@@ -1,271 +1,39 @@
-/* ================================ */
-/*            Common CSS            */
-/* ================================ */
-* {
-  /* `otf-font-awesome` is required to be installed for icons */
-  padding: 0;
-  border-radius: 0;
-  min-height: 0;
-  margin: 0;
-  border: none;
-  text-shadow: none;
-  transition: none;
-  box-shadow: none;
-}
+# Guia: Utilizando o Azure Machine Learning para Processar seus Dados
 
-/* the whole window */
-window#waybar {
-  background: #3c3835;
-  color: #fff4d2;
-  padding-right: 9px;
-  padding-left: 5px;
-  margin: 0;
-  border-radius: 19px;
-}
+## 📌 Introdução
+Azure Machine Learning (Azure ML) é uma plataforma da Microsoft que permite treinar, implantar e gerenciar modelos de machine learning na nuvem. Este guia apresenta um passo a passo para carregar e processar dados dentro do Azure ML.
 
-tooltip {
-  background: rgba(255, 244, 210, 0.8);
-  color: #3c3835;
-  border: 2px solid #3c3835;
-  border-radius: 5px;
-}
+---
 
-.modules-left {
-  padding-left: 5px;
-}
+## 🏗️ Passo a Passo
 
-.modules-right {
-  padding-right: 5px;
-}
+### 1️⃣ Criando um Workspace no Azure ML
 
-#custom-rofi,
-#workspaces button,
-#workspaces button:hover,
-#workspaces button.visible,
-#workspaces button.visible:hover,
-#workspaces button.active,
-#workspaces button.active:hover,
-#workspaces button.urgent,
-#window,
-#tray,
-#disk,
-#cpu,
-#temperature,
-#temperature.critical,
-#backlight,
-#custom-memory,
-#pulseaudio,
-#pulseaudio.muted,
-#battery,
-#battery.critical,
-#battery.warning,
-#clock {
-  font-family: JetBrainsMono Nerd Font Propo;
-  font-size: 14px;
-  font-weight: 400;
-  color: #202020;
-  background: #202020;
-  border-radius: 2px;
-}
+1. Acesse o portal do [Azure](https://portal.azure.com/).
+2. No menu lateral, pesquise por **Machine Learning** e clique na opção correspondente.
+3. Clique em **+ Criar** e preencha os seguintes campos:
+   - **Nome do workspace**: Escolha um nome único.
+   - **Grupo de Recursos**: Selecione um existente ou crie um novo.
+   - **Região**: Escolha a mais próxima para otimizar latência.
+4. Clique em **Revisar + Criar** e finalize o processo.
 
-#window,
-#tray,
-#disk,
-#cpu,
-#temperature,
-#temperature.critical,
-#backlight,
-#custom-memory,
-#pulseaudio,
-#pulseaudio.muted,
-#battery,
-#battery.critical,
-#battery.warning,
-#clock {
-  padding-right: 4px;
-  margin: 5px 0px;
-}
+### 2️⃣ Configurando o Ambiente
 
-#custom-rofi {
-  /* border: 2px solid #458588; */
-  /* border-radius: 5px; */
-  background: #3c3835;
-  padding: 0 6px;
-  margin: 5px 0px;
-}
+1. No portal do Azure ML, vá até **Ambientes de Computação**.
+2. Escolha uma opção:
+   - **Máquina Virtual**: Ideal para desenvolvimento interativo.
+   - **Cluster de Treinamento**: Recomendado para grandes volumes de dados.
+3. Configure os recursos (CPU/GPU) conforme a necessidade.
 
-/* ================================ */
-/*       workspaces module          */
-/* ================================ */
-#workspaces {
-  margin: 0px;
-}
+### 3️⃣ Carregando seus Dados
 
-#workspaces button {
-  color: #fff4d2;
-  background: #3c3835;
-  /* border: 2px solid #fff4d2; */
-  min-width: 25px;
-  padding: 0 4px;
-  margin: 5px 3px;
-}
+1. No menu lateral, vá até **Armazenamento de Dados**.
+2. Clique em **Criar** e escolha um dos métodos:
+   - **Upload Manual**: Enviar arquivos diretamente.
+   - **Azure Blob Storage**: Conectar a um armazenamento externo.
+   - **Conexão com Data Lake**: Para grandes volumes de dados.
+3. Após o upload, confirme se os dados estão disponíveis na aba **Datasets**.
+---
 
-#workspaces button:hover {
-  background: #3c3835;
-  border: 2px solid #b16286;
-  border-radius: 12px;
-}
-
-#workspaces button.visible {
-  border: 2px solid #689d6a;
-  border-radius: 12px;
-  background: #3c3835;
-}
-
-#workspaces button.visible:hover {
-  border: 2px solid #689d6a;
-  border-radius: 12px;
-  background: #3c3835;
-}
-
-#workspaces button.active {
-  border: 2px solid #689d6a;
-  border-radius: 12px;
-  background: #3c3835;
-}
-
-#workspaces button.active:hover {
-  border: 2px solid #689d6a;
-  border-radius: 12px;
-  background: #3c3835;
-}
-
-#workspaces button.urgent {
-  border: 2px solid #cc241d;
-  border-radius: 12px;
-  background: #3c3835;
-}
-
-/* ================================ */
-/*            window                 */
-/* ================================ */
-
-#window {
-  color: #a89884;
-  background: #3c3835;
-  /* border: 2px solid #d3869b; */
-}
-
-/* ================================ */
-/*            tray                 */
-/* ================================ */
-
-#tray {
-  /* padding: 0 6px; */
-  background: #3c3835;
-}
-
-/* ================================ */
-/*            disk                 */
-/* ================================ */
-
-#disk {
-  color: #ea6962;
-  border: 2px solid #ea6962;
-}
-
-/* ================================ */
-/*            cpu                  */
-/* ================================ */
-#cpu {
-  color: #e78a4e;
-  border: 2px solid #e78a4e;
-}
-
-/* ================================ */
-/*            temp                  */
-/* ================================ */
-#temperature {
-  color: #d8a657;
-  border: 2px solid #d8a657;
-}
-
-#temperature.critical {
-  color: #cc241d;
-  border: 2px solid #cc241d;
-}
-
-/* ================================ */
-/*            backlight             */
-/* ================================ */
-#custom-backlight {
-  color: #f6c657;
-  background: #3c3835;
-}
-
-/* ================================ */
-/*            memory                */
-/* ================================ */
-#custom-memory {
-  color: #458588;
-  border: 2px solid #458588;
-}
-
-/* ================================ */
-/*         pulseaudio               */
-/* ================================ */
-#pulseaudio {
-  color: #fbf1c7;
-  background: #3c3835;
-}
-
-#pulseaudio.muted {
-  color: #ea6962;
-  background: #3c3835;
-}
-
-/* ================================ */
-/*            battery               */
-/* ================================ */
-#battery {
-  color: #fbf1c7;
-  background: #3c3835;
-}
-
-#battery.critical {
-  color: #cc241d;
-  background: #3c3835;
-}
-
-#battery.warning {
-  color: #e78a4e;
-  background: #3c3835;
-}
-/* ================================ */
-/*            clock                 */
-/* ================================ */
-#clock.time {
-  color: #fbf1c7;
-  background: #3c3835;
-}
-
-#clock.date {
-  color: #fbf1c7;
-  background: #3c3835;
-}
-
-#custom-notification {
-  color: #fbf1c7;
-  font-size: 14px;
-  background: #3c3835;
-  padding: 2px 2px;
-}
-
-#custom-player {
-  color: #282828;
-  border: 2px solid #3c3835;
-  border-radius: 21px;
-  background: #fbf1c7;
-  padding-left: 9px;
-  padding-right: 9px;
-}
+## 🎯 Conclusão
+Seguindo esses passos, você conseguirá utilizar o Azure ML para armazenar, processar e treinar modelos com seus dados de forma eficiente. 🚀
